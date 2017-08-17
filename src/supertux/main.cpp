@@ -142,7 +142,7 @@ public:
     if (!PHYSFS_init(argv0))
     {
       std::stringstream msg;
-      msg << "Couldn't initialize physfs: " << PHYSFS_getLastError();
+      msg << "Couldn't initialize physfs: " << PHYSFS_getLastErrorCode();
       throw std::runtime_error(msg.str());
     }
     else
@@ -190,7 +190,7 @@ public:
 
     if (!PHYSFS_mount(boost::filesystem::canonical(datadir).string().c_str(), NULL, 1))
     {
-      log_warning << "Couldn't add '" << datadir << "' to physfs searchpath: " << PHYSFS_getLastError() << std::endl;
+      log_warning << "Couldn't add '" << datadir << "' to physfs searchpath: " << PHYSFS_getLastErrorCode() << std::endl;
     }
   }
 
@@ -266,7 +266,7 @@ public:
     {
       std::ostringstream msg;
       msg << "Failed to use userdir directory '"
-          <<  userdir << "': " << PHYSFS_getLastError();
+          <<  userdir << "': " << PHYSFS_getLastErrorCode();
       throw std::runtime_error(msg.str());
     }
 
